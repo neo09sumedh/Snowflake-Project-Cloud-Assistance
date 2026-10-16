@@ -1,0 +1,77 @@
+name: PROJECT_ANALYTICS_SV
+
+description: Semantic View for Cloud Project Analytics
+
+tables:
+
+  - name: PROJECT_COST
+
+    description: Project Cost Analytics
+
+    base_table:
+
+      database: SUMEDH_LAB_DB
+      schema: PROJECT_AI
+      table: VW_PROJECT_COST
+
+    dimensions:
+
+      - name: PROJECT_NAME
+        description: Project Name
+        expr: PROJECT_NAME
+        data_type: STRING
+
+      - name: PROJECT_STATUS
+        description: Project Status
+        expr: PROJECT_STATUS
+        data_type: STRING
+
+      - name: CLOUD_PROVIDER
+        description: Cloud Platform
+        expr: CLOUD_PROVIDER
+        data_type: STRING
+
+      - name: OWNER_NAME
+        description: Business Owner
+        expr: OWNER_NAME
+        data_type: STRING
+
+      - name: BUSINESS_UNIT
+        description: Business Unit
+        expr: BUSINESS_UNIT
+        data_type: STRING
+
+      - name: COST_MONTH
+        description: Reporting Month
+        expr: COST_MONTH
+        data_type: DATE
+
+    facts:
+
+      - name: TOTAL_PROJECT_COST
+
+        description: Total Monthly Project Cost
+
+        expr: TOTAL_PROJECT_COST
+
+        data_type: NUMBER
+
+    metrics:
+
+      - name: PROJECT_COST
+
+        description: Sum of Project Costs
+
+        expr: SUM(TOTAL_PROJECT_COST)
+
+      - name: AVG_PROJECT_COST
+
+        description: Average Project Cost
+
+        expr: AVG(TOTAL_PROJECT_COST)
+
+      - name: PROJECT_COUNT
+
+        description: Number of Projects
+
+        expr: COUNT(PROJECT_NAME)
